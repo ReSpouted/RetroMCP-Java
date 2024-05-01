@@ -74,6 +74,7 @@ task.createpatch = Create Patch
 task.createpatch.desc = Create a patch based off your changes to source
 task.backupsrc = Backup source
 task.backupsrc.desc = Pack source files into a zip
+task.downloadspoutpatch = Download Spoutcraft's patch
 task.applypatch = Apply patch
 task.applypatch.desc = Apply patch from patches directory
 task.updatemcp = Update RetroMCP

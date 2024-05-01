@@ -15,6 +15,7 @@ import org.mcphackers.mcp.tasks.TaskBuild;
 import org.mcphackers.mcp.tasks.TaskCleanup;
 import org.mcphackers.mcp.tasks.TaskCreatePatch;
 import org.mcphackers.mcp.tasks.TaskDecompile;
+import org.mcphackers.mcp.tasks.TaskDownloadSpoutPatch;
 import org.mcphackers.mcp.tasks.TaskDownloadUpdate;
 import org.mcphackers.mcp.tasks.TaskRecompile;
 import org.mcphackers.mcp.tasks.TaskReobfuscate;
@@ -143,6 +144,11 @@ public class TaskMode {
 			.setParameters(new TaskParameter[]{
 					TaskParameter.SIDE
 			})
+			.build();
+	public static TaskMode DOWNLOAD_SPOUT_PATCH = new TaskModeBuilder()
+			.setName("downloadspoutpatch")
+			.setTaskClass(TaskDownloadSpoutPatch.class)
+			.setProgressBars(true)
 			.build();
 	public static TaskMode BACKUP_SRC = new TaskModeBuilder()
 			.setName("backupsrc")
