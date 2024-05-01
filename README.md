@@ -1,40 +1,26 @@
-# RetroMCP-Java
+# RetroMCP-Legacy
 
-RetroMCP is a modification of the Minecraft Coder Pack to create a "Long Term Service" patch for Minecraft.
-RetroMCP-Java is a complete re-design of RetroMCP in Java.
+RetroMCP-Legacy is a Fork of [RetroMCP-Java](https://github.com/MCPHackers/RetroMCP-Java) that adds mappings for 1.6.4.
 
-# Using
+RetroMCP Legacy is a modification of the Minecraft Coder Pack to create a "Long Term Service" patch for Minecraft.
 
-Using RetroMCP-Java is simple!
-1. Download and install JDK 8. MCPHackers recommend [Azul Zulu](https://www.azul.com/downloads/?version=java-8-lts&package=jdk)
-2. Run the latest [release](https://github.com/MCPHackers/RetroMCP-Java/releases) from the command line or via double click. If you run it via double click and RMCP errors, make sure your PATH
-and your JAR file associations are properly configured.
-	> Be careful! Using "Open with" context menu on Windows will not use a proper directory, be sure to change the default .jar file associations
-3. Run `setup` and choose the version you wish to decompile.
-4. Run the `decompile` task
-5. Mod away! Now it's Yourcraft!
 
-For more info you can check [RetroMCP Wiki](https://github.com/MCPHackers/RetroMCP-Java/wiki).
+## This is meant for the testing and development of Respouted Legacy (Oldspout)!
 
-# Features
+A patched version of Respouted Legacy (OldSpout) will be available in its own repository.
 
-* Automatically download Minecraft .jar and libraries from version JSONs
-* An improved launch method using [LaunchWrapper](https://github.com/MCPHackers/LaunchWrapper)
-* Reobfuscation for all available versions
-* Automatic project creation
-* Merged codebase generation
+# Getting a patched version of Re:Spouted
 
-# Building
+## When using **IntelliJ IDEA**
 
-1. Use a Git client or download the sources as a zip.
-    > `git clone git@github.com:MCPHackers/RetroMCP-Java.git`
-2. Switch to the repository folder.
-    > `cd RetroMCP-Java`
-3. Invoke the build task using Gradle or the Gradle wrapper.
-    > `gradlew build`
+- select `Release 1.6.4` under the current version popup.
+- When asked:`Are you sure you want to run setup for selected version?`, select `Yes`.
+- Press `Decompile` (Note: It will say Finished with errors!: That's expected).
+- In the menu bar, press `MCP` > `More tasks...` >  `Download Spoutcraft's patch`.
+- In the menu bar, press `MCP` > `More tasks...` >  `Apply patch`. *Ideally no errors would happen here*.
+- Press `Recompile`. (If errors happened during this step above, this is likely to have a few errors. These are likely to be just stuff using the wrong name for a method or a variable).
+- Press `MCP > Launch client`.
 
-# Contributing
+### Report any issues to BlackilyKat
 
-If you encounter any issues or bugs with RetroMCP, please create an issue and explain it in detail!<br>
-If you want to contribute, please keep pull requests about one topic instead of one huge pull request.<br>
-We thank everyone who contributes to this project!
+
