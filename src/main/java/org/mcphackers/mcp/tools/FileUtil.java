@@ -127,7 +127,11 @@ public abstract class FileUtil {
 	}
 
 	public static void downloadFile(String url, Path output) throws IOException {
-		downloadFile(new URL(url), output);
+		if(url.startsWith("classpath:")) {
+			downloadFile(new URL(null, url, new ResourceURLHandler()), output);
+		} else {
+			downloadFile(new URL(url), output);
+		}
 	}
 
 	public static void downloadFile(URL url, Path output) throws IOException {

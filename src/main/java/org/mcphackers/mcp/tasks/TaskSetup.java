@@ -22,6 +22,7 @@ import org.mcphackers.mcp.MCPPaths;
 import org.mcphackers.mcp.tasks.mode.TaskMode;
 import org.mcphackers.mcp.tasks.mode.TaskParameter;
 import org.mcphackers.mcp.tools.FileUtil;
+import org.mcphackers.mcp.tools.ResourceURLHandler;
 import org.mcphackers.mcp.tools.Util;
 import org.mcphackers.mcp.tools.versions.DownloadData;
 import org.mcphackers.mcp.tools.versions.VersionParser;
@@ -64,7 +65,7 @@ public class TaskSetup extends TaskStaged {
 
 					InputStream versionStream;
 					try {
-						versionStream = new URL(chosenVersionData.url).openStream();
+						versionStream = new URL(null, chosenVersionData.url, new ResourceURLHandler()).openStream();
 					} catch (MalformedURLException ex) {
 						versionStream = Files.newInputStream(MCPPaths.get(mcp, chosenVersionData.url));
 					}
@@ -75,7 +76,7 @@ public class TaskSetup extends TaskStaged {
 					if (chosenVersionData.resources != null) {
 						setProgress(getLocalizedStage("download", chosenVersionData.resources), 2);
 						try {
-							URL url = new URL(chosenVersionData.resources);
+							URL url = new URL(null, chosenVersionData.resources, new ResourceURLHandler());
 							FileUtil.extract(url.openStream(), MCPPaths.get(mcp, CONF));
 						} catch (MalformedURLException e) {
 							Path p = Paths.get(chosenVersionData.resources);

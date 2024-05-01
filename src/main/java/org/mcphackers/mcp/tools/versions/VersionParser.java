@@ -15,12 +15,13 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.mcphackers.mcp.tools.JSONUtil;
+import org.mcphackers.mcp.tools.ResourceURLHandler;
 import org.mcphackers.mcp.tools.Util;
 import org.mcphackers.mcp.tools.versions.json.VersionMetadata;
 
 public class VersionParser {
 
-	public static String mappingsJson = "https://mcphackers.github.io/versionsV2/versions.json";
+	public static String mappingsJson = "classpath:/mappings/versionsV2/versions.json";
 	private static VersionParser INSTANCE;
 
 	private final List<VersionData> versions = new ArrayList<>();
@@ -63,7 +64,7 @@ public class VersionParser {
 		if (Files.exists(versions)) {
 			in = Files.newInputStream(versions);
 		} else {
-			URLConnection connect = new URL(mappingsJson).openConnection();
+			URLConnection connect = new URL(null, mappingsJson, new ResourceURLHandler()).openConnection();
 			connect.setConnectTimeout(30000);
 			in = connect.getInputStream();
 		}
