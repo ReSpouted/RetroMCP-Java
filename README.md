@@ -20,7 +20,7 @@ A patched version of Respouted Legacy (OldSpout) will be available in its own re
 - Press `Recompile`. (If errors happened during this step above, this is likely to have a few errors. These are likely to be just stuff using the wrong name for a method or a variable).
 - Press `MCP > Launch client`.
 
-You'll be able to find the code in the `minecraft` folder.git
+You'll be able to find the code in the `minecraft` folder
 
 ### Report any issues to Blackilykat
 
