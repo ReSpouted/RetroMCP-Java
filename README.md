@@ -21,7 +21,3 @@ A patched version of Respouted Legacy (OldSpout) will be available in its own re
 - Press `MCP > Launch client`.
 
 You'll be able to find the code in the `minecraft` folder
-
-### Report any issues to Blackilykat
-
-
