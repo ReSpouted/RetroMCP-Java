@@ -11,16 +11,17 @@ A patched version of Respouted Legacy (OldSpout) will be available in its own re
 
 # Getting a patched version of Re:Spouted
 
-## When using **IntelliJ IDEA**
-
+- Download `RetroMCP-Legacy-GUI.jar` from [the latest release](https://github.com/ReSpouted/RetroMCP-Legacy/releases/latest)
+- Run it in a dedicated folder, **make sure to use jdk 8**.
 - select `Release 1.6.4` under the current version popup.
-- When asked:`Are you sure you want to run setup for selected version?`, select `Yes`.
-- Press `Decompile` (Note: It will say Finished with errors!: That's expected).
+- Press `Decompile` (It will say `Finished with errors!`: That's expected).
 - In the menu bar, press `MCP` > `More tasks...` >  `Download Spoutcraft's patch`.
 - In the menu bar, press `MCP` > `More tasks...` >  `Apply patch`. *Ideally no errors would happen here*.
 - Press `Recompile`. (If errors happened during this step above, this is likely to have a few errors. These are likely to be just stuff using the wrong name for a method or a variable).
 - Press `MCP > Launch client`.
 
-### Report any issues to BlackilyKat
+You'll be able to find the code in the `minecraft` folder.git
+
+### Report any issues to Blackilykat
 
 
