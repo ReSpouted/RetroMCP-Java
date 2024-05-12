@@ -384,10 +384,10 @@
     {
       "downloads": {
         "artifact": {
-          "path": "org/newdawn/slick/slick/274/slick-util.jar",
+          "path": "org/newdawn/slick/slick/274/slick-274.jar",
           "sha1": "743c4e5d444e11c9e7dd7f3da1622f6810734619",
           "size": 102748,
-          "url": "https://slick.ninjacave.com/slick-util.jar"
+          "url": "classpath:/mappings/libs/slick-274.jar"
         }
       },
       "name": "org.newdawn.slick:slick:274"
