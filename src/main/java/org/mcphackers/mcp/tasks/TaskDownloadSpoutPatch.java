@@ -24,7 +24,6 @@ public class TaskDownloadSpoutPatch extends TaskStaged {
 	protected Stage[] setStages() {
 		return new Stage[] {
 				stage(getLocalizedStage("download", "Spoutcraft's patch file"), () -> {
-					if(side == Side.SERVER) return;
 					final Path patchesPath = MCPPaths.get(mcp, PATCH, side);
 					patchesPath.toFile().mkdirs();
 					FileUtil.downloadFile("https://raw.githubusercontent.com/ReSpouted/Grease/main/client.patch", patchesPath.resolve("client.patch"));

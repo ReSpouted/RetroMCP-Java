@@ -149,6 +149,7 @@ public class TaskMode {
 			.setName("downloadspoutpatch")
 			.setTaskClass(TaskDownloadSpoutPatch.class)
 			.setProgressBars(true)
+			.addRequirement((mcp, side) -> side == Side.CLIENT)
 			.build();
 	public static TaskMode BACKUP_SRC = new TaskModeBuilder()
 			.setName("backupsrc")
