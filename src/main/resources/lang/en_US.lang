@@ -126,3 +126,7 @@ task.param.outputsrc = Output source
 tasks.success = Finished successfully!
 tasks.warning = Finished with warnings!
 tasks.error = Finished with errors!
+
+respouted.nonDefaultExpectedChecksumWarning = The expectedDecompiledChecksum setting was set to %d, different from its default value %d! With a bad value, this could make it impossible to decompile.
+respouted.expectedChecksum = Got expected checksum %d!
+respouted.unexpectedChecksum = Got checksum %d instead of expected value %d! Starting over...

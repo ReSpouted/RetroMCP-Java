@@ -19,9 +19,13 @@ import org.mcphackers.rdi.nio.MappingsIO;
 import org.mcphackers.rdi.nio.RDInjector;
 import org.objectweb.asm.tree.ClassNode;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.zip.CRC32;
+import java.util.zip.CheckedInputStream;
 
 import static org.mcphackers.mcp.MCPPaths.*;
 
@@ -74,6 +78,15 @@ public class TaskDecompile extends TaskStaged {
 			new Decompiler(this, rdiOut, ffOut, mcp.getLibraries(), mcp).decompile();
 			new EclipseProjectWriter().createProject(mcp, side, ClassUtils.getSourceFromClassVersion(classVersion));
 			new IdeaProjectWriter().createProject(mcp, side, ClassUtils.getSourceFromClassVersion(classVersion));
+			long sum = getDirectoryChecksum(MCPPaths.get(mcp, SOURCE_UNPATCHED, side).toFile());
+			if(sum == mcp.options.expectedDecompiledChecksum) {
+				mcp.log(MCP.TRANSLATOR.translateKeyWithFormatting("respouted.expectedChecksum", sum));
+			} else {
+				mcp.log(MCP.TRANSLATOR.translateKeyWithFormatting("respouted.unexpectedChecksum", sum, mcp.options.expectedDecompiledChecksum));
+				// it's gonna tick over after completing this stage going back to 0 at the prepare stage
+				// see org.mcphackers.mcp.tasks.TaskStaged#doTask()
+				step = -1;
+			}
 		}), stage(getLocalizedStage("patch"), 88, () -> {
 			if (mcp.getOptions().getBooleanParameter(TaskParameter.PATCHES) && Files.exists(patchesPath)) {
 				TaskApplyPatch.patch(this, ffOut, ffOut, patchesPath);
@@ -93,6 +106,25 @@ public class TaskDecompile extends TaskStaged {
 				FileUtil.copyDirectory(ffOut, srcPath);
 			}
 		}), stage(getLocalizedStage("recompile"), () -> new TaskUpdateMD5(side, mcp, this).doTask()),};
+	}
+
+	private static long getDirectoryChecksum(File file) throws IOException {
+		if(!file.isDirectory()) {
+			try(FileInputStream fileInputStream = new FileInputStream(file)) {
+				CheckedInputStream inputStream = new CheckedInputStream(fileInputStream, new CRC32());
+				byte[] buffer = new byte[1048576];
+				while(inputStream.available() > 0) {
+					inputStream.read(buffer);
+				}
+				return inputStream.getChecksum().getValue();
+			}
+		}
+
+		long sum = 0;
+		for(File child : file.listFiles()) {
+			sum += getDirectoryChecksum(child);
+		}
+		return sum;
 	}
 
 	public ClassStorage applyInjector() throws IOException {

@@ -90,6 +90,11 @@ public class MainGUI extends MCP {
 		if (options.lang != null) {
 			changeLanguage(options.lang);
 		}
+
+		if(options.expectedDecompiledChecksum != Options.defaultExpectedDecompiledChecksum) {
+			log(TRANSLATOR.translateKeyWithFormatting("respouted.nonDefaultExpectedChecksumWarning", options.expectedDecompiledChecksum, Options.defaultExpectedDecompiledChecksum));
+		}
+
 		JavaCompiler c = ToolProvider.getSystemJavaCompiler();
 		if (c == null) {
 			JOptionPane.showMessageDialog(null, TRANSLATOR.translateKey("mcp.needJDK"), TRANSLATOR.translateKey("mcp.error"), JOptionPane.ERROR_MESSAGE);

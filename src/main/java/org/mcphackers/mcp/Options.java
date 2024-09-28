@@ -18,12 +18,14 @@ import org.mcphackers.mcp.tools.Util;
 import org.mcphackers.mcp.tools.versions.VersionParser;
 
 public class Options {
+	public static final long defaultExpectedDecompiledChecksum = 3318027086458L;
 	private final MCP mcp;
 	private final Map<TaskParameter, Object> options = new HashMap<>();
 	public Path saveFile;
 	public Side side = Side.ANY;
 	public Language lang;
 	public Theme theme;
+	public long expectedDecompiledChecksum = defaultExpectedDecompiledChecksum;
 
 	public Options(MCP mcp) {
 		this.mcp = mcp;
@@ -66,6 +68,8 @@ public class Options {
 						}
 					} else if (key.equals("versionUrl")) {
 						VersionParser.mappingsJson = value;
+					} else if (key.equals("expectedDecompiledChecksum")) {
+						expectedDecompiledChecksum = Long.parseLong(value);
 					} else {
 						safeSetParameter(TaskParameterMap.get(key), value);
 					}
@@ -85,6 +89,7 @@ public class Options {
 					writer.append("theme").append('=').append(MainGUI.THEME.themeClass).append('\n');
 				}
 				writer.append("versionUrl").append('=').append(VersionParser.mappingsJson).append('\n');
+				writer.append("expectedDecompiledChecksum").append('=').append(String.valueOf(expectedDecompiledChecksum)).append('\n');
 				for (Entry<TaskParameter, Object> entry : options.entrySet()) {
 					if (entry.getValue() != null && entry.getKey() != TaskParameter.SIDE) {
 						writer.append(entry.getKey().name).append('=').append(getParameter(entry.getKey()).toString()).append(String.valueOf('\n'));

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.mcphackers.mcp.Language;
 import org.mcphackers.mcp.MCP;
 import org.mcphackers.mcp.MCPPaths;
+import org.mcphackers.mcp.Options;
 import org.mcphackers.mcp.tasks.Task;
 import org.mcphackers.mcp.tasks.Task.Side;
 import org.mcphackers.mcp.tasks.mode.TaskMode;
@@ -70,6 +71,11 @@ public class MainCLI extends MCP {
 				version = new Ansi().fgBrightRed().a("Unable to get current version!").fgDefault().toString();
 			}
 		}
+
+		if(options.expectedDecompiledChecksum != Options.defaultExpectedDecompiledChecksum) {
+			log(TRANSLATOR.translateKeyWithFormatting("respouted.nonDefaultExpectedChecksumWarning", options.expectedDecompiledChecksum, Options.defaultExpectedDecompiledChecksum));
+		}
+
 		if (args.length == 0) {
 			startedWithNoParams = true;
 			log(LOGO.toString());
