@@ -31,7 +31,6 @@ import static org.mcphackers.mcp.MCPPaths.*;
 
 public class TaskDecompile extends TaskStaged {
 	public static final int STAGE_DECOMPILE = 2;
-	public static final int STAGE_MD5 = 5;
 
 	private int classVersion = -1;
 
@@ -105,7 +104,7 @@ public class TaskDecompile extends TaskStaged {
 				FileUtil.deletePackages(ffOut, mcp.getOptions().getStringArrayParameter(TaskParameter.IGNORED_PACKAGES));
 				FileUtil.copyDirectory(ffOut, srcPath);
 			}
-		}), stage(getLocalizedStage("recompile"), () -> new TaskUpdateMD5(side, mcp, this).doTask()),};
+		})};
 	}
 
 	private static long getDirectoryChecksum(File file) throws IOException {
@@ -211,20 +210,11 @@ public class TaskDecompile extends TaskStaged {
 
 	@Override
 	public void setProgress(int progress) {
-		switch (step) {
-			case STAGE_DECOMPILE: {
-				int percent = (int) (progress * 0.82D);
-				super.setProgress(3 + percent);
-				break;
-			}
-			case STAGE_MD5: {
-				int percent = (int) (progress * 0.04D);
-				super.setProgress(96 + percent);
-				break;
-			}
-			default:
-				super.setProgress(progress);
-				break;
+		if(step == STAGE_DECOMPILE) {
+			int percent = (int) (progress * 0.82D);
+			super.setProgress(3 + percent);
+		} else {
+			super.setProgress(progress);
 		}
 	}
 }
