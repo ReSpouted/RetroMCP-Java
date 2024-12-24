@@ -16,9 +16,10 @@ import org.mcphackers.mcp.tasks.mode.TaskParameter;
 import org.mcphackers.mcp.tasks.mode.TaskParameterMap;
 import org.mcphackers.mcp.tools.Util;
 import org.mcphackers.mcp.tools.versions.VersionParser;
+import org.mcphackers.mcp.tools.OS;
 
 public class Options {
-	public static final long defaultExpectedDecompiledChecksum = 3318027086458L;
+	public static final long defaultExpectedDecompiledChecksum = OS.getOs() == OS.windows ? 3313188831466L : 3318027086458L;
 	private final MCP mcp;
 	private final Map<TaskParameter, Object> options = new HashMap<>();
 	public Path saveFile;

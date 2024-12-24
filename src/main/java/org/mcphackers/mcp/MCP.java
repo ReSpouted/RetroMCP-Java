@@ -29,7 +29,7 @@ import org.mcphackers.mcp.tools.versions.json.Version;
 
 public abstract class MCP {
 
-	public static final String VERSION = "v1.0.2";
+	public static final String VERSION = "v1.0.3";
 	public static final String GITHUB_URL = "https://github.com/ReSpouted/RetroMCP-Legacy";
 	public static final TranslatorUtil TRANSLATOR = new TranslatorUtil();
 	private static final PluginManager pluginManager = new PluginManager();
