@@ -138,8 +138,10 @@ public class TaskMode {
 	public static TaskMode APPLY_PATCH = new TaskModeBuilder()
 			.setName("applypatch")
 			.setTaskClass(TaskApplyPatch.class)
-			.setProgressBars(false)
-			.addRequirement((mcp, side) -> Files.isReadable(MCPPaths.get(mcp, MCPPaths.PATCH, side))
+			.setProgressBars(true)
+			// .addRequirement((mcp, side) -> Files.isReadable(MCPPaths.get(mcp, MCPPaths.PATCH, side))
+			// 		&& Files.isReadable(MCPPaths.get(mcp, MCPPaths.SOURCE, side)))
+			.addRequirement((mcp, side) -> Files.exists(MCPPaths.get(mcp, MCPPaths.PATCHDIR, side))
 					&& Files.isReadable(MCPPaths.get(mcp, MCPPaths.SOURCE, side)))
 			.setParameters(new TaskParameter[]{
 					TaskParameter.SIDE
