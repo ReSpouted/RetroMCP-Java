@@ -41,6 +41,7 @@ public class MCPPaths {
 	public static final String VERSION = CONF + "version.json";
 
 	public static final String PATCH = "patches/%s.patch";
+	public static final String PATCHDIR = "patches/%s";
 
 	public static final String UPDATE_JAR = "update.jar";
 
